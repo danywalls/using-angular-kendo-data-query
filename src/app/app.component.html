@@ -1,0 +1,23 @@
+<h1>Working With Data in Angular</h1>
+
+<div class="actions">
+  <button (click)="sortProductsAsc()">Sort Asc</button>
+  <button (click)="sortProductsDesc()">Desc Desc</button>
+  <div class="filter">
+  <label for="filter">Filter By Name: </label>
+  <input id="filter" type="text" #filterValue>
+  </div>
+  <button (click)="filterBy(filterValue)">Filter</button>
+  <button (click)="showGroup()">Show Group</button>
+  <button (click)="showTotal()"> Total of all products</button> {{total}}
+</div>
+<div class="box" *ngFor="let category of categories">
+ <h2>{{category.value}}</h2>
+ <app-list-products [products]="category.items"></app-list-products>
+</div>
+
+<h1>All Products</h1>
+<app-list-products [products]="products"></app-list-products>
+
+
+

@@ -1,0 +1,34 @@
+/* Root or host styles */
+:host {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  gap: 1rem;
+}
+
+/* Common properties for product and category */
+.box{
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.actions {
+  padding: 0.5rem;
+  background-color: aquamarine;
+  justify-content: space-around;
+  display: flex;
+}
+
+.filter {
+  display: flex;
+}
+
+app-list-products {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
