@@ -5,7 +5,7 @@ import {
   AggregateResult,
   filterBy,
   FilterDescriptor,
-  FilterOperator,
+  FilterOperator, GroupDescriptor,
   orderBy,
   process,
   SortDescriptor
@@ -20,11 +20,12 @@ import {mockProducts} from "./mock-products";
 export class AppComponent {
 
   categories: any = [];
-  total: any = 0.00;
+  total : any = 0.00;
   products = mockProducts
 
   sortDescriptor: SortDescriptor = {field: 'price', dir: 'asc'};
   filterDescriptor: FilterDescriptor = {field: 'name', operator: FilterOperator.EqualTo, value: '', };
+  groupDescriptor: GroupDescriptor[] = [{field: 'category'}];
   sortProductsAsc() {
     this.sortDescriptor.dir = 'asc';
     this.products = orderBy(this.products, [this.sortDescriptor]);
@@ -41,13 +42,14 @@ export class AppComponent {
   }
 
   showGroup() {
-    this.categories = process(this.products, {group: [{ field: "category" , dir: "asc"}]}).data
+        this.categories = process(this.products, {group: this.groupDescriptor}).data
   }
   showTotal() {
-    let aggregateByPriceSum : AggregateDescriptor  =
+    const aggregateByPriceSum : AggregateDescriptor  =
       {field: "price", aggregate: "sum"};
 
     const aggregateResult: AggregateResult = aggregateBy(this.products,  [aggregateByPriceSum]);
     this.total = aggregateResult['price'].sum;
   }
 }
+
